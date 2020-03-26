@@ -6,32 +6,31 @@
       <tr>
         <td><img class="refferpic" :src="quakelogo" @click="quakebtn"/></td>
         <td><img class="refferpic" :src="resonatelogo" @click="resonatebtn"/></td>
-        <td></td>
-        <td></td>
+        <td><img class="refferpic" :src="cclsbclogo" @click="cclsbcbtn"/></td>
+        <td><img class="refferpic" :src="baile" @click="bailebtn"/></td>
       </tr>
       <tr>
         <td @click="quakebtn">{{$t("message.quake")}}</td>
         <td @click="resonatebtn">{{$t("message.resonate")}}</td>
+        <td @click="cclsbcbtn">{{$t("message.cclsbc")}}</td>
+        <td @click="bailebtn">{{$t("message.baile")}}</td>
+      </tr>
+    </table>
+    <table class="reffertable">
+       <tr>
+        <td><img class="refferpic" :src="longhu" @click="longhubtn"/></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        
+      </tr> 
+       <tr>
+        <td @click="longhubtn">{{$t("message.longhu")}}</td>
+        <td></td>
         <td></td>
         <td></td>
         
       </tr>
-    </table>
-    <table class="reffertable">
-      <!-- <tr>
-        <td><img class="refferpic" :src="zerodicelogo" @click="zerodicelogobtn"/></td>
-        <td><img class="refferpic" :src="blockoptions" @click="blockoptionsbtn"/></td>
-        <td></td>
-        <td></td>
-        
-      </tr> -->
-      <!-- <tr>
-        <td @click="zerodicelogobtn">{{$t("message.zerodicelogo")}}</td>
-        <td @click="blockoptionsbtn">{{$t("message.blockoptions")}}</td>
-        <td @click="gowinplusbtn">{{$t("message.gowinplus")}}</td>
-        <td></td>
-        
-      </tr> -->
     </table>
     </div>
     <div v-show="isshowtoast" class="isshowclass">
@@ -52,6 +51,9 @@ export default {
     return {
       quakelogo:'static/images/quakelogo.png',
       resonatelogo:'static/images/resonatelogo.png',
+      cclsbclogo:'static/images/cclsbc.png',
+      baile:'static/images/baile.png',
+      longhu:'static/images/longhu.png',
       isshowtoast:false
     }
   },
@@ -59,6 +61,14 @@ export default {
 
   },
   methods: {
+    cclsbcbtn:function(){
+      let dname = window.localStorage.getItem("Cclsbc");
+      if(dname){
+        window.open(Links.url.cclsbc,'_self')
+      }else{
+        trans.$emit("tipsemit",{"name":"Cclsbc","link":Links.url.cclsbc,"state":0});
+      } 
+    },
     quakebtn:function (event) {      
       let dname = window.localStorage.getItem("Quake");
       if(dname){
@@ -114,6 +124,22 @@ export default {
         window.open(Links.url.gowin_plus,'_self')
       }else{
         trans.$emit("tipsemit",{"name":"TreasureBasin","link":Links.url.gowin_plus,"state":0});
+      }
+    },
+    bailebtn:()=>{
+      let dname = window.localStorage.getItem("哈希百乐");
+      if(dname){
+        window.open(Links.url.baile,'_self')
+      }else{
+        trans.$emit("tipsemit",{"name":"哈希百乐","link":Links.url.baile,"state":0});
+      }
+    },
+    longhubtn:()=>{
+      let dname = window.localStorage.getItem("哈希龙虎");
+      if(dname){
+        window.open(Links.url.longhu,'_self')
+      }else{
+        trans.$emit("tipsemit",{"name":"哈希龙虎","link":Links.url.longhu,"state":0});
       }
     },
     closedivbtn:function(){
